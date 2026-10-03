@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Java: guía visual del lenguaje</title>
+  <title>Aprende Java</title>
   <style>
     :root{--bg:#0c1733;--panel:#13224a;--panel2:#1a2d5e;--line:#2c4180;--ink:#eef2ff;--mute:#a3b4de;--accent:#ff8a3d;--teal:#4fd1b8;--ease:cubic-bezier(.23,1,.32,1)}
     *{box-sizing:border-box;margin:0}
@@ -182,6 +182,53 @@
     .btn:disabled{opacity:.4;cursor:default;animation:none;filter:none}
     #gterm{height:310px;overflow:auto;min-height:0}
     pre.pt{height:250px;overflow:auto;min-height:0}.cnt{color:var(--teal);min-height:1.6em}
+
+    .hero h1{font-size:clamp(2.6rem,6.4vw,4.8rem);max-width:none;line-height:1.05}
+    .tag{font:700 clamp(1.1rem,2.2vw,1.5rem) Georgia,serif;margin:10px 0 0}
+    .ltr{display:inline-block;transition:transform .2s var(--ease)}.ltr:hover{transform:translateY(-8px) rotate(-4deg)}
+    .jv{color:var(--accent)}
+    .panel.on .ltr{animation:drop .65s var(--ease) backwards;animation-delay:calc(var(--k,0)*55ms)}
+    @keyframes drop{from{opacity:0;transform:translateY(-30px) rotate(-8deg)}}
+    .stats{display:flex;gap:28px;margin:0 0 24px;flex-wrap:wrap}
+    .stat b{display:block;font:700 2rem Georgia,serif;color:var(--accent);line-height:1}
+    .stat span{color:var(--mute);font-size:.82rem}
+    .progt{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    .progbar{height:12px;border-radius:8px;background:var(--bg);border:1px solid var(--line);overflow:hidden}
+    .progbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--teal));transition:width .9s var(--ease)}
+    .lvl{display:flex;align-items:center;gap:12px;margin:14px 0 8px}
+    .lvl b{font-family:Georgia,serif;color:var(--accent);font-size:1.05rem}
+    .lvl::after{content:"";flex:1;height:1px;background:var(--line)}
+    .rn{padding:8px 14px;border-radius:999px;background:var(--panel);border:1px solid var(--line);transition:all .15s var(--ease)}
+    .rn:hover{border-color:var(--accent);transform:translateY(-2px)}.rn:active{transform:scale(.96)}
+    .rn.v{border-color:var(--teal);color:var(--teal)}.rn.v::before{content:"✓ "}
+    .panel.on .rn{animation:pop .4s var(--ease) backwards;animation-delay:calc(var(--i,0)*14ms)}
+    .stackv{display:flex;flex-direction:column-reverse;gap:6px;min-height:290px;border:2px dashed var(--line);border-radius:12px;padding:8px;margin:12px 0}
+    .queuev{display:flex;gap:6px;min-height:72px;border:2px dashed var(--line);border-radius:12px;padding:8px;margin:12px 0;overflow:hidden;align-items:center}
+    .it{min-width:46px;padding:10px;border-radius:10px;text-align:center;background:var(--accent);color:#1b1206;font:700 1rem ui-monospace,Consolas,monospace;animation:itin .35s var(--ease)}
+    .stackv .it{width:100%}
+    .queuev .it{animation-name:itq}
+    @keyframes itin{from{opacity:0;transform:translateY(-22px) scale(.9)}}
+    @keyframes itq{from{opacity:0;transform:translateX(34px)}}
+    .it.out{animation:itout .38s var(--ease) forwards}
+    .queuev .it.out{animation:itoutq .38s var(--ease) forwards}
+    @keyframes itout{to{opacity:0;transform:translateY(-26px) scale(.8)}}
+    @keyframes itoutq{to{opacity:0;transform:translateX(-34px)}}
+    .bars{display:flex;align-items:flex-end;gap:6px;height:240px;padding:8px;border:2px dashed var(--line);border-radius:12px;margin-bottom:12px}
+    .bar3{flex:1;display:flex;align-items:flex-end;justify-content:center;background:var(--panel2);border:1px solid var(--line);border-radius:6px 6px 0 0;transition:height .25s var(--ease),background .2s,opacity .25s}
+    .bar3 span{font:.75rem ui-monospace,Consolas,monospace;color:var(--mute);padding-bottom:4px}
+    .bar3.hi{background:var(--accent)}.bar3.hi span{color:#1b1206}.bar3.so{background:var(--teal)}.bar3.so span{color:#06231d}.bar3.dim{opacity:.22}
+    .spd{display:inline-flex;align-items:center;gap:8px;color:var(--mute)}
+    .fcs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .fc{display:block;width:100%;height:130px;perspective:900px}
+    .fci{position:relative;width:100%;height:100%;transition:transform .6s var(--ease);transform-style:preserve-3d}
+    .fc.flip .fci{transform:rotateY(180deg)}
+    .fcf,.fcb{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:12px;border-radius:14px;border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .fcf{background:var(--panel);font:700 1.15rem Georgia,serif}
+    .fcb{background:var(--accent);color:#1b1206;transform:rotateY(180deg);font-size:.92rem;line-height:1.35}
+    .fc:hover .fcf{border-color:var(--accent)}
+    .cf{position:fixed;top:-14px;width:9px;height:14px;border-radius:2px;z-index:9;pointer-events:none;animation:cfall linear forwards}
+    @keyframes cfall{to{transform:translate(var(--dx),108vh) rotate(720deg)}}
+    @media(max-width:860px){.fcs{grid-template-columns:1fr 1fr}.stats{gap:16px}.stat b{font-size:1.5rem}}
     @media(max-width:860px){.zone{padding:8px 6px}.zone h3{font-size:.68rem}.zone small{font-size:.62rem}.zchip{font-size:.6rem;padding:8px 2px;top:92px}}
     @media(max-width:860px){
       header{padding:10px 16px}nav{grid-template-columns:1fr 1fr;top:52px;right:8px}nav button{padding:8px 10px;font-size:.88rem}.road{grid-template-columns:1fr 1fr}.three{grid-template-columns:1fr}
@@ -189,14 +236,14 @@
       .hero{flex-direction:column;justify-content:center;gap:12px;text-align:center}.hero h1,.hero p{margin-inline:auto}.btns{justify-content:center}.cup{width:150px}
       .g3,.code,.opts,.two{grid-template-columns:1fr}.node{font-size:.68rem}.node b{width:36px;height:36px;font-size:1rem}.line{top:18px}pre{font-size:.78rem;min-height:0;overflow-x:auto}
     }
-    @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}.steam path{animation:none;opacity:.6}.bg{display:none}.cup,.panel.on .card,.btn,.panel.on .kw,.panel.on h2::after{animation:none}.scroll .rv{opacity:1;transform:none;transition:none}}
+    @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}.steam path{animation:none;opacity:.6}.bg{display:none}.cup,.panel.on .card,.btn,.panel.on .kw,.panel.on h2::after,.panel.on .ltr,.panel.on .rn,.cf{animation:none}.cf{display:none}.scroll .rv{opacity:1;transform:none;transition:none}}
   </style>
 </head>
 <body>
 <div id="bar"></div><div class="bg" id="bg" aria-hidden="true"></div>
 <div class="app">
   <header>
-    <div class="brand"><svg width="30" height="30" viewBox="0 0 240 240" aria-hidden="true"><path d="M50 100H170L164 140Q156 182 110 182Q64 182 56 140Z" fill="#ff8a3d"/><path d="M168 112H182Q204 112 204 136Q204 160 178 160H160" fill="none" stroke="#ff8a3d" stroke-width="14" stroke-linecap="round"/></svg>Java</div>
+    <div class="brand"><svg width="30" height="30" viewBox="0 0 240 240" aria-hidden="true"><path d="M50 100H170L164 140Q156 182 110 182Q64 182 56 140Z" fill="#ff8a3d"/><path d="M168 112H182Q204 112 204 136Q204 160 178 160H160" fill="none" stroke="#ff8a3d" stroke-width="14" stroke-linecap="round"/></svg>Aprende Java</div>
     <span id="curt"></span><button id="mbtn" aria-expanded="false">Menú</button><nav id="nav" aria-label="Secciones"></nav>
   </header>
 
@@ -204,10 +251,12 @@
 
     <section class="panel hero on" data-title="Inicio">
       <div>
-        <h1>Escríbelo una vez y ejecútalo donde quieras</h1>
+        <h1 id="ttl">Aprende Java</h1>
+        <div class="tag">Escríbelo una vez y ejecútalo donde quieras</div>
         <p>Java es un lenguaje de programación creado en 1991 que hoy mueve servidores, bancos, videojuegos y millones de aplicaciones. Aquí tienes su historia, cómo es su código y cómo empezar.</p>
         <div class="rotw">Con Java se hacen <b id="rot"></b></div>
-        <div class="btns"><button class="btn" data-go="35">Ver código real</button><button class="btn alt" data-go="1">Ver su historia</button></div>
+        <div class="stats" id="stats"></div>
+        <div class="btns"><button class="btn" data-go="38">Ver código real</button><button class="btn alt" data-go="2">Ver su historia</button></div>
       </div>
       <svg class="cup" viewBox="0 0 240 240" role="img" aria-label="Taza de café con llaves de código, símbolo del lenguaje Java">
         <g class="steam"><path d="M90 84Q78 66 90 50Q102 34 90 18"/><path d="M118 84Q106 66 118 50Q130 34 118 18"/><path d="M146 84Q134 66 146 50Q158 34 146 18"/></g>
@@ -217,6 +266,13 @@
         <ellipse cx="110" cy="100" rx="60" ry="9" fill="#7a3a12"/>
         <text x="110" y="156" text-anchor="middle" font-family="monospace" font-size="38" font-weight="700" fill="#0c1733">{ }</text>
       </svg>
+    </section>
+
+    <section class="panel scroll" data-title="Ruta de aprendizaje">
+      <h2>Tu ruta de aprendizaje</h2>
+      <p class="lead">Pulsa cualquier sección para ir a ella. Las que visites se marcan solas.</p>
+      <div class="card"><div class="progt"><span id="progtxt"></span><button class="btn" id="cont">Continuar donde lo dejé</button></div><div class="progbar"><i id="progfill"></i></div></div>
+      <div id="road2"></div>
     </section>
 
     <section class="panel" data-title="Historia">
@@ -236,7 +292,7 @@
 
     <section class="panel scroll" data-title="Creadores">
       <h2>Las personas y la empresa detrás de Java</h2>
-      <div class="two"><figure class="ph" data-file="img/gosling.jpg" data-alt="James Gosling"><figcaption>James Gosling, considerado el padre de Java</figcaption></figure>
+      <div class="two"><figure class="ph" data-file="img/gosling.webp" data-alt="James Gosling"><figcaption>James Gosling, considerado el padre de Java</figcaption></figure>
         <div class="card big"><h3>James Gosling</h3><p>Informático canadiense que lideró el diseño de Java en Sun Microsystems. Con Mike Sheridan y Patrick Naughton formó el equipo inicial del proyecto Green, en 1991.</p></div></div>
       <div class="two"><div class="card big"><h3>Sun Microsystems</h3><p>Empresa estadounidense de ordenadores y software que creó y lanzó Java. En 2010 la compró Oracle, que hoy dirige la plataforma junto a la comunidad de OpenJDK.</p></div>
         <figure class="ph" data-file="img/sun-microsystems.webp" data-alt="Sede de Sun Microsystems"><figcaption>Sun Microsystems</figcaption></figure></div>
@@ -389,7 +445,7 @@ System.out.println(modo); // prueba</pre></div></div>
       <p class="lead">Puedes usar un editor sencillo o un IDE completo. Un IDE incluye autocompletado, depurador y herramientas para gestionar el proyecto.</p>
       <div class="tw"><table><thead><tr><th>Herramienta</th><th>Tipo</th><th>Precio</th><th>Ideal para</th></tr></thead><tbody><tr><td>IntelliJ IDEA</td><td>IDE completo</td><td>Con versión gratuita y planes de pago</td><td>Proyectos de Java de cualquier tamaño</td></tr><tr><td>Visual Studio Code</td><td>Editor con extensiones</td><td>Gratis</td><td>Algo ligero que sirve para varios lenguajes</td></tr><tr><td>Eclipse</td><td>IDE</td><td>Gratis y de código abierto</td><td>Empresas y universidades</td></tr><tr><td>NetBeans</td><td>IDE</td><td>Gratis, de Apache</td><td>Aprender y hacer aplicaciones de escritorio</td></tr><tr><td>BlueJ</td><td>IDE educativo</td><td>Gratis</td><td>Entender clases y objetos al empezar</td></tr><tr><td>Editores online</td><td>En el navegador</td><td>Gratis</td><td>Probar código sin instalar nada</td></tr></tbody></table></div>
 
-      <div class="three"><figure class="ph" data-file="img/intellij-pantalla.webp" data-alt="IntelliJ IDEA"><figcaption>IntelliJ IDEA</figcaption></figure><figure class="ph" data-file="img/vscode-pantalla.webp" data-alt="Visual Studio Code con Java"><figcaption>Visual Studio Code</figcaption></figure><figure class="ph" data-file="img/eclipse-pantalla.jpg" data-alt="Eclipse"><figcaption>Eclipse</figcaption></figure></div>
+      <div class="three"><figure class="ph" data-file="img/intellij-pantalla.webp" data-alt="IntelliJ IDEA"><figcaption>IntelliJ IDEA</figcaption></figure><figure class="ph" data-file="img/vscode-pantalla.webp" data-alt="Visual Studio Code con Java"><figcaption>Visual Studio Code</figcaption></figure><figure class="ph" data-file="img/eclipse-pantalla.webp" data-alt="Eclipse"><figcaption>Eclipse</figcaption></figure></div>
       <div class="grid g3"><div class="card big"><h3>IntelliJ IDEA</h3><p>Muy buen autocompletado, refactorización, depurador y soporte de Maven y Gradle integrado. A cambio consume más recursos del equipo.</p></div><div class="card big"><h3>Visual Studio Code</h3><p>Ligero y rápido. Para Java necesita la extensión Extension Pack for Java, que añade autocompletado, ejecución y depuración.</p></div><div class="card big"><h3>Eclipse</h3><p>Veterano y muy usado en entornos de trabajo y de estudio. Se amplía con plugins.</p></div><div class="card big"><h3>NetBeans</h3><p>IDE gratuito de Apache con buen soporte para Java y Maven desde el primer momento.</p></div><div class="card big"><h3>BlueJ</h3><p>Pensado para aprender: muestra las clases como cajas y deja crear objetos con el ratón.</p></div><div class="card big"><h3>Online y jshell</h3><p>Sitios como JDoodle u OnlineGDB ejecutan Java en el navegador, y jshell lo hace desde la terminal.</p></div></div>
 
       <h3>Cómo elegir</h3>
@@ -546,6 +602,50 @@ unicos.add(3);
 unicos.add(5);
 
 System.out.println(unicos.size()); // 2</pre></div></div>
+    </section>
+
+    <section class="panel scroll" data-title="Pila y cola">
+      <h2>Pila y cola, en movimiento</h2>
+      <p class="lead">Dos estructuras que guardan elementos en un orden concreto. Prueba a añadir y quitar.</p>
+      <div class="two">
+        <div class="card"><h3>Pila (LIFO)</h3><p>El último en entrar es el primero en salir.</p><div class="stackv" id="stackv"></div><p class="cnt" id="smsg"></p><div class="btns"><button class="btn" id="spush">push</button><button class="btn alt" id="spop">pop</button></div></div>
+        <div class="card"><h3>Cola (FIFO)</h3><p>El primero en entrar es el primero en salir.</p><div class="queuev" id="queuev"></div><p class="cnt" id="qmsg"></p><div class="btns"><button class="btn" id="qadd">offer</button><button class="btn alt" id="qpoll">poll</button></div></div>
+      </div>
+      <div class="two"><div class="card big"><h3>Pila con ArrayDeque</h3><p>push añade arriba y pop quita el de arriba. ArrayDeque es la opción recomendada en lugar de la clase Stack.</p></div><div class="win m"><div class="bar"><i></i><i></i><i></i><span>Pila.java</span></div><pre class="hl">Deque&lt;Integer&gt; pila = new ArrayDeque&lt;&gt;();
+pila.push(1);
+pila.push(2);
+int cima = pila.pop(); // 2</pre></div></div>
+      <div class="two"><div class="card big"><h3>Cola con LinkedList</h3><p>offer añade al final y poll quita el primero.</p></div><div class="win m"><div class="bar"><i></i><i></i><i></i><span>Cola.java</span></div><pre class="hl">Queue&lt;Integer&gt; cola = new LinkedList&lt;&gt;();
+cola.offer(1);
+cola.offer(2);
+int primero = cola.poll(); // 1</pre></div></div>
+      <div class="grid g3"><div class="card big"><h3>Dónde se usa una pila</h3><p>En el botón de deshacer, en el historial del navegador y en las llamadas a métodos de tu programa.</p></div><div class="card big"><h3>Dónde se usa una cola</h3><p>En turnos de impresión, tareas pendientes y mensajes que se procesan en orden de llegada.</p></div><div class="card big"><h3>Si está vacía</h3><p>pop y poll devuelven un error o null según el método: comprueba antes con isEmpty().</p></div></div>
+    </section>
+
+    <section class="panel scroll" data-title="Algoritmos">
+      <h2>Algoritmos animados</h2>
+      <p class="lead">Mira cómo ordena y busca un programa. Cambia la velocidad con el deslizador.</p>
+      <div class="card"><div class="bars" id="bars"></div><p class="cnt" id="amsg"></p>
+        <div class="btns"><button class="btn" id="asort">Ordenar (burbuja)</button><button class="btn" id="asrch">Búsqueda binaria</button><button class="btn alt" id="ashuf">Mezclar</button><label class="spd">Velocidad <input type="range" id="aspd" min="1" max="5" value="3"></label></div></div>
+      <div class="two"><div class="card big"><h3>Ordenación de burbuja</h3><p>Compara cada pareja de vecinos y los intercambia si están al revés. Los números grandes suben hasta el final.</p></div><div class="win m"><div class="bar"><i></i><i></i><i></i><span>Burbuja.java</span></div><pre class="hl">for (int i = 0; i &lt; n - 1; i++) {
+    for (int j = 0; j &lt; n - 1 - i; j++) {
+        if (a[j] &gt; a[j + 1]) {
+            int t = a[j];
+            a[j] = a[j + 1];
+            a[j + 1] = t;
+        }
+    }
+}</pre></div></div>
+      <div class="two"><div class="card big"><h3>Búsqueda binaria</h3><p>Mira el elemento del medio y descarta la mitad donde no puede estar. Solo funciona con datos ordenados.</p></div><div class="win m"><div class="bar"><i></i><i></i><i></i><span>Busqueda.java</span></div><pre class="hl">int lo = 0, hi = a.length - 1;
+while (lo &lt;= hi) {
+    int mid = (lo + hi) / 2;
+    if (a[mid] == objetivo) return mid;
+    if (a[mid] &lt; objetivo) lo = mid + 1;
+    else hi = mid - 1;
+}
+return -1;</pre></div></div>
+      <div class="tw"><table><thead><tr><th>Algoritmo</th><th>Cómo funciona</th><th>Eficiencia</th></tr></thead><tbody><tr><td>Burbuja</td><td>Compara vecinos e intercambia</td><td>O(n²)</td></tr><tr><td>Búsqueda lineal</td><td>Revisa uno a uno</td><td>O(n)</td></tr><tr><td>Búsqueda binaria</td><td>Divide en mitades, con datos ordenados</td><td>O(log n)</td></tr><tr><td>Arrays.sort</td><td>Ordenación optimizada que ya trae Java</td><td>O(n log n)</td></tr></tbody></table></div>
+      <div class="grid g3"><div class="card big"><h3>Qué es la eficiencia</h3><p>Indica cuánto crece el tiempo cuando aumenta la cantidad de datos.</p></div><div class="card big"><h3>En la práctica</h3><p>Usa Arrays.sort o lista.sort en lugar de escribir tu propio algoritmo.</p></div><div class="card big"><h3>Para aprender</h3><p>Escribir algoritmos a mano ayuda a entender cómo piensa un programa.</p></div></div>
     </section>
 
     <section class="panel scroll" data-title="Chuleta">
@@ -1050,6 +1150,14 @@ System.out.println(media); // 7.25</pre></div></details>
       <div class="grid g3"><div class="card big"><h3>Nivel inicial</h3><p>Adivina el número, una calculadora de consola o un conversor de unidades.</p></div><div class="card big"><h3>Nivel intermedio</h3><p>Un gestor de tareas que guarde en archivo, el juego del ahorcado o una biblioteca con clases.</p></div><div class="card big"><h3>Nivel avanzado</h3><p>Una API REST con Spring Boot, un juego con libGDX o una app conectada a una base de datos.</p></div></div>
     </section>
 
+    <section class="panel scroll" data-title="Repaso">
+      <h2>Tarjetas de repaso</h2>
+      <p class="lead">Lee el concepto, intenta recordar su significado y pulsa la tarjeta para girarla.</p>
+      <div class="btns"><button class="btn" id="fall">Girar todas</button><button class="btn alt" id="fshuf">Mezclar</button></div>
+      <p class="cnt" id="fcn"></p>
+      <div class="fcs" id="fcs"></div>
+    </section>
+
     <section class="panel" data-title="Quiz">
       <h2>¿Cuánto sabes de Java?</h2>
       <div class="card" id="qbox"><h3 id="qq"></h3><div class="opts" id="qo"></div><p id="qs" style="margin-top:12px;color:var(--teal)"></p></div>
@@ -1119,7 +1227,7 @@ System.out.println(media); // 7.25</pre></div></details>
       count.textContent=(cur+1)+' / '+panels.length;
       bar.style.width=((cur+1)/panels.length*100)+'%';
       [].forEach.call(panels[cur].querySelectorAll('.card'),function(c,k){c.style.setProperty('--i',Math.min(k,8))});
-      var tl=panels[cur].dataset.title;document.getElementById('curt').textContent=tl;if(tl==='Empezar')typeTerm();if(tl==='Cómo funciona')resetFlow();if(tl==='Memoria')memReset();if(tl==='Hilos')hiReset();if(tl==='Comandos')cmdReset();if(tl==='Primer push')gitReset();if(RESET[tl])RESET[tl]();if(tl==='Git y GitHub')zReset();up.classList.remove('show');
+      var tl=panels[cur].dataset.title;document.getElementById('curt').textContent=tl;visMark(tl);if(tl==='Empezar')typeTerm();if(tl==='Cómo funciona')resetFlow();if(tl==='Memoria')memReset();if(tl==='Hilos')hiReset();if(tl==='Comandos')cmdReset();if(tl==='Primer push')gitReset();if(RESET[tl])RESET[tl]();if(tl==='Inicio')countUp();if(tl==='Git y GitHub')zReset();up.classList.remove('show');
     }
     document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go(+b.dataset.go)}});
     prev.onclick=function(){go(cur-1)};next.onclick=function(){go(cur+1)};
@@ -1165,7 +1273,7 @@ System.out.println(media); // 7.25</pre></div></details>
     /* Quiz */
     var Q=[['¿Qué ejecuta el bytecode de Java?',['El compilador javac','La JVM','El sistema operativo','El IDE'],1],['¿Qué extensión tienen los archivos compilados?',['.java','.class','.exe','.py'],1],['¿Quién lideró el equipo que creó Java en Sun?',['Linus Torvalds','Bjarne Stroustrup','James Gosling','Guido van Rossum'],2],['¿Cada cuánto sale una versión nueva de Java?',['Cada año','Cada seis meses','Cada diez años','Cada mes'],1],['¿Qué método de String compara el contenido de dos textos?',['==','equals','compare','same'],1],['¿Qué tipo usarías para un número con decimales?',['int','boolean','double','char'],2],['¿Cuál es el punto de entrada de un programa Java?',['El método start','El método main','La clase Run','El método init'],1],['¿Qué palabra clave se usa para heredar de otra clase?',['implements','extends','inherits','super'],1],['¿Qué comando ejecuta un archivo .java sin compilarlo antes?',['java Main.java','javac Main.java','jar Main','run Main'],0],['¿Dónde se guardan los objetos creados con new?',['En el stack','En el heap','En el disco','En el navegador'],1],['¿Qué comando prepara los archivos para el próximo commit?',['git push','git add','git pull','git init'],1],['¿Qué comando sube tus commits a GitHub?',['git push','git clone','git status','git add'],0],['¿Qué hace git status?',['Sube el proyecto','Muestra el estado de tus archivos','Borra el historial','Crea una rama'],1],['¿Qué archivo indica qué ignorar a Git?',['.gitignore','README.md','pom.xml','.gitstop'],0],['¿Qué opción de java define dónde buscar las clases?',['-cp','-d','-ea','-jar'],0],['¿Qué comando lista los procesos Java en ejecución?',['jps','jar','javap','jlink'],0],['¿Qué hace javac -d out?',['Borra la carpeta out','Guarda los .class en la carpeta out','Descarga documentación','Depura el programa'],1],['¿Qué comando abre el intérprete interactivo de Java?',['jshell','javap','jlink','jdeps'],0]],qi=0,sc=0,lock=false;
     function quiz(){var qq=document.getElementById('qq'),qo=document.getElementById('qo'),qs=document.getElementById('qs');lock=false;qo.innerHTML='';qs.textContent='';
-      if(qi>=Q.length){qq.textContent='Has acertado '+sc+' de '+Q.length;qs.textContent=sc===Q.length?'¡Perfecto!':'Repasa las secciones de historia y de cómo funciona.';var r=document.createElement('button');r.textContent='Repetir el quiz';r.onclick=function(){qi=0;sc=0;quiz()};qo.appendChild(r);return}
+      if(qi>=Q.length){qq.textContent='Has acertado '+sc+' de '+Q.length;if(sc>=Q.length*.8)confetti();qs.textContent=sc===Q.length?'¡Perfecto!':'Repasa las secciones de historia y de cómo funciona.';var r=document.createElement('button');r.textContent='Repetir el quiz';r.onclick=function(){qi=0;sc=0;quiz()};qo.appendChild(r);return}
       var q=Q[qi];qq.textContent=(qi+1)+'. '+q[0];
       q[1].forEach(function(t,k){var b=document.createElement('button');b.textContent=t;b.onclick=function(){if(lock)return;lock=true;if(k===q[2]){sc++;b.className='ok';qs.textContent='¡Correcto!'}else{b.className='bad';qo.children[q[2]].className='ok';qs.textContent='Casi: la respuesta es '+q[1][q[2]]+'.'}setTimeout(function(){qi++;quiz()},1400)};qo.appendChild(b)})}
     quiz();
@@ -1174,7 +1282,9 @@ System.out.println(media); // 7.25</pre></div></details>
     var mb=document.getElementById('mbtn');mb.onclick=function(e){e.stopPropagation();mb.setAttribute('aria-expanded',nav.classList.toggle('open'))};
     document.addEventListener('click',function(e){if(!nav.contains(e.target))nav.classList.remove('open')});
     /* Fotos: si el archivo no existe, se muestra el hueco con su nombre */
-    document.querySelectorAll('.ph').forEach(function(f){var i=new Image();i.alt=f.dataset.alt||'';i.onerror=function(){f.classList.add('miss')};i.src=f.dataset.file;f.insertBefore(i,f.firstChild)});
+    document.querySelectorAll('.ph').forEach(function(f){var i=new Image(),base=f.dataset.file.replace(/\.[a-z]+$/,''),nm=base.replace(/^img\//,''),C=[],X=['webp','jpg','jpeg','png'],k=0;
+      X.forEach(function(x){C.push(base+'.'+x)});X.forEach(function(x){C.push(nm+'.'+x)});
+      i.alt=f.dataset.alt||'';i.onerror=function(){k++;if(k<C.length)i.src=C[k];else f.classList.add('miss')};i.src=C[0];f.insertBefore(i,f.firstChild)});
     /* Resaltado de código */
     function hl(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/("[^"]*")|(\/\/.*)|\b(public|private|class|static|void|int|double|boolean|char|final|new|return|if|else|for|while|try|catch|throw|extends|implements|interface|this|import|record|long|float|byte|short|true|false|null)\b|\b(\d+(\.\d+)?)\b|\b([A-Z][A-Za-z0-9]*)\b/g,function(m,s,c,k,n,x,ty){return s?'<span class="s">'+s+'</span>':c?'<span class="c">'+c+'</span>':k?'<span class="k">'+k+'</span>':n?'<span class="n">'+n+'</span>':'<span class="t">'+m+'</span>'})}
     document.querySelectorAll('pre.hl').forEach(function(p){p.innerHTML=hl(p.textContent)});
@@ -1258,6 +1368,54 @@ System.out.println(media); // 7.25</pre></div></details>
     function argUpd(){var a=[],re=/"([^"]*)"|(\S+)/g,m;while((m=re.exec(ai.value)))a.push(m[1]!==undefined?m[1]:m[2]);
       var t='$ java Saludo'+(ai.value.trim()?' '+ai.value.trim():'')+'\nRecibí '+a.length+' argumentos';a.forEach(function(x,i){t+='\n'+i+': '+x});ao.textContent=t}
     ai.addEventListener('input',argUpd);argUpd();
+
+    /* Título con letras que caen */
+    var ti=document.getElementById('ttl'),tx='Aprende Java';ti.setAttribute('aria-label',tx);
+    ti.innerHTML=tx.split('').map(function(c,k){return c===' '?' ':'<span class="ltr'+(k>=8?' jv':'')+'" style="--k:'+k+'" aria-hidden="true">'+c+'</span>'}).join('');
+    /* Contadores de la portada */
+    var SD=[[panels.length,'secciones'],[document.querySelectorAll('pre').length,'bloques de código'],[document.querySelectorAll('details.ex').length,'ejercicios'],[Q.length,'preguntas del quiz']];
+    document.getElementById('stats').innerHTML=SD.map(function(s){return '<div class="stat"><b data-n="'+s[0]+'">0</b><span>'+s[1]+'</span></div>'}).join('');
+    function countUp(){document.querySelectorAll('.stat b').forEach(function(b){var n=+b.dataset.n,t0=null;function f(t){if(!t0)t0=t;var q=Math.min((t-t0)/1100,1);b.textContent=Math.round(n*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f)}requestAnimationFrame(f)})}
+    /* Ruta de aprendizaje con progreso */
+    var seen={};try{seen=JSON.parse(localStorage.getItem('javaweb-vis')||'{}')}catch(e){}
+    var TT=panels.map(function(p){return p.dataset.title}),used={},chips=[],rd=document.getElementById('road2'),
+      RG=[['1 · Primeros pasos',['Historia','Creadores','Características','Cómo funciona','Instalar Java','Dónde programar','Atajos','Empezar']],['2 · Lo básico',['Conceptos','Chuleta','Palabras clave','Instrucciones','Código','Ejercicios']],['3 · Programar mejor',['POO','Colecciones','Pila y cola','Algoritmos','Utilidades','Buenas prácticas','Estructura','Depurar y probar']],['4 · Más a fondo',['Memoria','Hilos','Versiones','Comparativa','Usos','Ecosistema','Curiosidades']],['5 · Comandos de Java',['Comandos','Opciones de java','Compilar proyectos','Argumentos','jshell','Herramientas JDK','Maven y Gradle']],['6 · Git y GitHub',['Git y GitHub','Instalar Git','Cuenta y acceso','Primer push','Comandos Git','Flujo diario','Errores de Git','Git en el IDE']],['7 · Repaso',['Repaso','Quiz','Aprender']]];
+    function addGrp(name,list){var t=document.createElement('div');t.className='lvl';t.innerHTML='<b>'+name+'</b>';rd.appendChild(t);var d=document.createElement('div');d.className='kwg';
+      list.forEach(function(s){if(TT.indexOf(s)<0)return;used[s]=1;var b=document.createElement('button');b.className='rn';b.textContent=s;b.dataset.t=s;b.style.setProperty('--i',chips.length);b.onclick=function(){go(TT.indexOf(s))};d.appendChild(b);chips.push(b)});rd.appendChild(d)}
+    RG.forEach(function(g){addGrp(g[0],g[1])});
+    var left=TT.filter(function(s){return s!=='Inicio'&&s!=='Ruta de aprendizaje'&&!used[s]});if(left.length)addGrp('Más cosas',left);
+    function visMark(t){if(t!=='Inicio'&&t!=='Ruta de aprendizaje'){seen[t]=1;try{localStorage.setItem('javaweb-vis',JSON.stringify(seen))}catch(e){}}
+      var n=0;chips.forEach(function(b){var v=!!seen[b.dataset.t];if(v)n++;b.classList.toggle('v',v)});
+      document.getElementById('progtxt').textContent='Has visitado '+n+' de '+chips.length+' secciones';document.getElementById('progfill').style.width=(n/chips.length*100)+'%'}
+    document.getElementById('cont').onclick=function(){var nx=chips.filter(function(b){return !seen[b.dataset.t]})[0];if(nx)go(TT.indexOf(nx.dataset.t));else document.getElementById('progtxt').textContent='¡Has visitado todas las secciones!'};
+    /* Pila y cola */
+    function mkList(cid,ab,rb,mid,lifo,nm){var c=document.getElementById(cid),n=0,m=document.getElementById(mid);
+      document.getElementById(ab).onclick=function(){if(c.children.length>=7){m.textContent='Está llena: quita alguno primero.';return}n++;var d=document.createElement('div');d.className='it';d.textContent=n;c.appendChild(d);m.textContent=nm[0]+'('+n+')'};
+      document.getElementById(rb).onclick=function(){var k=[].filter.call(c.children,function(x){return !x.classList.contains('out')});if(!k.length){m.textContent='Está vacía: no hay nada que quitar.';return}var t=lifo?k[k.length-1]:k[0];t.classList.add('out');m.textContent=nm[1]+'() devuelve '+t.textContent;setTimeout(function(){t.remove()},380)}}
+    mkList('stackv','spush','spop','smsg',true,['push','pop']);mkList('queuev','qadd','qpoll','qmsg',false,['offer','poll']);
+    /* Algoritmos animados */
+    var ab=document.getElementById('bars'),av=[],arun=0,am=document.getElementById('amsg'),aspd=document.getElementById('aspd');
+    function sl(ms){return new Promise(function(r){setTimeout(r,ms)})}
+    function aD(){return [420,230,120,55,20][aspd.value-1]}
+    function aDraw(hi,so,dim){if(ab.children.length!==av.length)ab.innerHTML=av.map(function(){return '<div class="bar3"><span></span></div>'}).join('');
+      av.forEach(function(v,i){var b=ab.children[i];b.style.height=(v*7+8)+'%';b.firstChild.textContent=v;b.className='bar3'+(hi&&hi.indexOf(i)>=0?' hi':'')+(so&&so.indexOf(i)>=0?' so':'')+(dim&&(i<dim[0]||i>dim[1])?' dim':'')})}
+    function aShuf(){arun++;av=[1,2,3,4,5,6,7,8,9,10,11,12];for(var i=av.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=av[i];av[i]=av[j];av[j]=t}aDraw();am.textContent='Pulsa un botón para empezar.'}
+    async function bubble(){var my=++arun,n=av.length,so=[];for(var i=0;i<n-1;i++){for(var j=0;j<n-1-i;j++){if(my!==arun)return;am.textContent='Comparo '+av[j]+' y '+av[j+1]+'.';aDraw([j,j+1],so);await sl(aD());if(av[j]>av[j+1]){var t=av[j];av[j]=av[j+1];av[j+1]=t;am.textContent='Están al revés: los intercambio.';aDraw([j,j+1],so);await sl(aD())}}so.push(n-1-i)}so.push(0);aDraw(null,so);am.textContent='¡Ordenado!'}
+    async function bsearch(){var my=++arun;for(var i=1;i<av.length;i++)if(av[i]<av[i-1]){am.textContent='Primero ordena el array: la búsqueda binaria solo funciona con datos ordenados.';aDraw();return}
+      var t=av[Math.floor(Math.random()*av.length)],lo=0,hi=av.length-1;am.textContent='Busco el número '+t+'.';aDraw();await sl(aD()*3);
+      while(lo<=hi){if(my!==arun)return;var mid=Math.floor((lo+hi)/2);aDraw([mid],null,[lo,hi]);
+        if(av[mid]===t){am.textContent='¡Encontrado el '+t+' en la posición '+mid+'!';aDraw(null,[mid],[lo,hi]);return}
+        am.textContent='En el medio está el '+av[mid]+': '+(av[mid]<t?'es menor, descarto la izquierda.':'es mayor, descarto la derecha.');await sl(aD()*4);if(av[mid]<t)lo=mid+1;else hi=mid-1}}
+    document.getElementById('asort').onclick=bubble;document.getElementById('asrch').onclick=bsearch;document.getElementById('ashuf').onclick=aShuf;RESET['Algoritmos']=aShuf;aShuf();
+    /* Tarjetas de repaso */
+    var FC=[['JVM','Máquina virtual que ejecuta el bytecode.'],['JDK','Kit con el compilador y las herramientas para programar.'],['Bytecode','Código intermedio que genera javac.'],['Clase','Molde que define datos y acciones.'],['Objeto','Ejemplar creado con new a partir de una clase.'],['Herencia','Una clase reutiliza a otra con extends.'],['Interfaz','Contrato con los métodos que una clase debe tener.'],['Polimorfismo','Un mismo método actúa distinto según el objeto.'],['ArrayList','Lista que crece según lo necesites.'],['HashMap','Mapa de pares clave y valor.'],['Excepción','Error que se puede capturar con try y catch.'],['Stack','Zona de memoria con variables locales y llamadas.'],['Heap','Zona de memoria donde viven los objetos.'],['Recolector de basura','Libera los objetos que ya no se usan.'],['git commit','Guarda los cambios preparados en el historial.'],['git push','Sube tus commits a GitHub.']],fcs=document.getElementById('fcs');
+    function fcCount(){document.getElementById('fcn').textContent='Has girado '+fcs.querySelectorAll('.fc.flip').length+' de '+FC.length+' tarjetas.'}
+    function fcBuild(shuf){var L=FC.slice();if(shuf)L.sort(function(){return Math.random()-.5});fcs.innerHTML='';
+      L.forEach(function(c){var b=document.createElement('button');b.className='fc';b.innerHTML='<div class="fci"><div class="fcf"></div><div class="fcb"></div></div>';b.firstChild.children[0].textContent=c[0];b.firstChild.children[1].textContent=c[1];b.onclick=function(){b.classList.toggle('flip');fcCount()};fcs.appendChild(b)});fcCount()}
+    document.getElementById('fall').onclick=function(){var all=[].slice.call(fcs.children),on=all.every(function(b){return b.classList.contains('flip')});all.forEach(function(b,k){setTimeout(function(){b.classList.toggle('flip',!on);fcCount()},k*60)})};
+    document.getElementById('fshuf').onclick=function(){fcBuild(true)};RESET['Repaso']=function(){fcBuild(false)};fcBuild(false);
+    /* Confeti al sacar buena nota en el quiz */
+    function confetti(){var cs=['#ff8a3d','#4fd1b8','#f7d774','#7cc4ff','#ff6b6b'];for(var i=0;i<44;i++){var s=document.createElement('span');s.className='cf';s.style.left=(Math.random()*100)+'vw';s.style.background=cs[i%5];s.style.animationDuration=(1.8+Math.random()*1.6)+'s';s.style.animationDelay=(Math.random()*.5)+'s';s.style.setProperty('--dx',(Math.random()*160-80)+'px');document.body.appendChild(s);(function(e){setTimeout(function(){e.remove()},4200)})(s)}}
     go(0);
   })();
 </script>
